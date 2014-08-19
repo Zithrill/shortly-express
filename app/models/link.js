@@ -12,7 +12,10 @@ var Link = db.Model.extend({
     return this.hasMany(Click);
   },
   initialize: function(){
-    this.on('creating', function(model, attrs, options){
+    console.log("HERE WE ARE");
+    console.log("This object is: ",this);
+    this.on('creating', function(model, attributes, options){
+      // console.log("HERE WE ARE 2!!");
       var shasum = crypto.createHash('sha1');
       shasum.update(model.get('url'));
       model.set('code', shasum.digest('hex').slice(0, 5));
